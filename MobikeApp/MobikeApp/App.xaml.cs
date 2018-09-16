@@ -1,6 +1,9 @@
 ﻿using Prism;
 using Prism.Ioc;
 using MobikeApp.ViewModels;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using MobikeApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -22,6 +25,10 @@ namespace MobikeApp
 
         protected override async void OnInitialized()
         {
+            AppCenter.Start("android=c181f1ac-ea8d-48eb-baf6-4fc3dfa9e57d;" + 
+                "uwp={Your UWP App secret here};" + 
+                "ios={Your iOS App secret here}", 
+                typeof(Analytics), typeof(Crashes));
             InitializeComponent();
 
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
